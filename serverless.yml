@@ -1,4 +1,4 @@
-service: new-employee-update
+service: newEmployeeUpdate
 provider:
   name: aws
   runtime: nodejs18.x
