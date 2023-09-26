@@ -1,0 +1,46 @@
+service: new-employee-update
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: ap-south-1
+  environment:
+    DYNAMODB_TABLE_NAME: ${self:custom.postsTableName}
+custom:
+  postsTableName: new-employee-${self:provider.stage}
+plugins:
+  - serverless-iam-roles-per-function
+functions:
+  updateEmployee:
+    handler: api.updateEmployee
+    name: update-post
+    memorySize: 128 # mb
+    timeout: 5 # seconds
+    events:
+      - http:
+          path: post/{eId}
+          method: PUT
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:UpdateItem"
+        Resource: !GetAtt PostsTable.Arn
+  
+resources:
+  Resources:
+    PostsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.postsTableName}
+        AttributeDefinitions:
+          - AttributeName: eId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: eId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+
+
