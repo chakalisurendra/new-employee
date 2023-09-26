@@ -12,7 +12,7 @@ plugins:
   - serverless-iam-roles-per-function
 functions:
   updateEmployee:
-    handler: api.updateEmployee
+    handler: api.updateEmployeeDetail
     name: update-employee
     memorySize: 128 # mb
     timeout: 5 # seconds

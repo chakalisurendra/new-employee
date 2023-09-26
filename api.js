@@ -6,7 +6,7 @@ const {
   
   const client = new DynamoDBClient();
 
-  const updateEmployee = async (event) => {
+  const updateEmployeeDetail = async (event) => {
     const response = { statusCode: 200 };
     try {
       const body = JSON.parse(event.body);
@@ -54,5 +54,5 @@ const {
   
   module.exports = {
     //updatePost,
-    updateEmployee,
+    updateEmployeeDetail,
   };
