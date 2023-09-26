@@ -13,12 +13,12 @@ plugins:
 functions:
   updateEmployee:
     handler: api.updateEmployeeDetail
-    name: update-employee
+    name: update-employee-api
     memorySize: 128 # mb
     timeout: 5 # seconds
     events:
       - http:
-          path: employee/{eId}
+          path: updateEmployee/{eId}
           method: PUT
     iamRoleStatements:
       - Effect: "Allow"
