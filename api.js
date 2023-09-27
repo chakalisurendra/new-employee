@@ -99,9 +99,10 @@ const updateEmployeeDetail = async (event, context) => {
     const response = { statusCode: 200 };
     const body = JSON.parse(event.body)
     await client.update({
-         TableName: 'usersDB',
+         //TableName: 'usersDB',
+         TableName: process.env.DYNAMODB_TABLE_NAME,
          Key:{
-             id: event.pathParameters.id,
+            eId: event.pathParameters.eId,
          },
          UpdateExpression: 'set totalExperience = :totalExperience, employmentStartDateInHyniva = :employmentStartDateInHyniva, supervisorName = :supervisorName, projectName = :projectName',
 
