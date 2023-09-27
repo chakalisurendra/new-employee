@@ -57,10 +57,10 @@ const updateEmployeeDetail = async (event) => {
 
     const updatedFields = {};
     for (const field of fieldsToUpdate) {
-      if (body[field]) {
         if ("jobTitle" === field) {
-          validater.isAlphabetic(field);
+            validater.isAlphabetic(field);
         }
+      if (body[field]) {
         updatedFields[field] = body[field];
       }
     }
