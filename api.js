@@ -98,7 +98,7 @@ const employee="employee";
 const updateEmployeeDetail = async (event, context) => {
     const response = { statusCode: 200 };
     const body = JSON.parse(event.body)
-    await docClient.update({
+    await client.update({
          TableName: 'usersDB',
          Key:{
              id: event.pathParameters.id,
