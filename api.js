@@ -24,6 +24,8 @@ const updateEmployeeDetail = async (event) => {
   const response = { statusCode: 200 };
   try {
     const body = JSON.parse(event.body);
+
+    validater.isAlphabetic(jobTitle);
     const fieldsToUpdate = [
       "jobTitle",
       "totalExperience",
@@ -58,9 +60,9 @@ const updateEmployeeDetail = async (event) => {
     const updatedFields = {};
     for (const field of fieldsToUpdate) {
       if (body[field]) {
-        if ("jobTitle" === field) {
-            validater.isAlphabetic(field);
-        }
+        // if ("jobTitle" === field) {
+        //     validater.isAlphabetic(field);
+        // }
         updatedFields[field] = body[field];
       }
     }
